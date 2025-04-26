@@ -1,0 +1,6 @@
+{
+    "region": "en-US",
+    "daily_run_time": "08:00",
+    "smart_mode": true,
+    "discord_webhook_url": "yourdiscordhookURLhere"
+}
