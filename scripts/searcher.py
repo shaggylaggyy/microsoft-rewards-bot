@@ -1,21 +1,42 @@
-import time
 import random
+import time
 from selenium.webdriver.common.by import By
-from scripts.query_generator import generate_smart_query  # 🆕 Import AI query generator
+from selenium.webdriver.common.keys import Keys
+from scripts.query_generator import generate_smart_query
 
-def perform_searches(browser, topics_list, num_searches=30, smart_mode=True):
-    base_url = "https://www.bing.com/search?q="
+# Define basic topics for search variety
+BASE_TOPICS = [
+    "technology", "sports", "health", "movies", "news", "games",
+    "travel", "music", "education", "history", "food", "science"
+]
 
-    for i in range(num_searches):
-        if smart_mode:
-            topic = random.choice(topics_list)
-            query = generate_smart_query(topic)
+def perform_searches(browser, mobile=False):
+    try:
+        search_count = 30 if not mobile else 20
+
+        if mobile:
+            print("📱 Farming mobile searches...")
         else:
-            query = random.choice(topics_list)
+            print("🖥️ Farming desktop searches...")
 
-        search_url = base_url + query.replace(' ', '+')
+        browser.get('https://www.bing.com/')
+        time.sleep(random.uniform(3, 5))
 
-        browser.get(search_url)
-        print(f"🔎 Searching: {query} ({i+1}/{num_searches})")
+        for i in range(search_count):
+            base_topic = random.choice(BASE_TOPICS)
+            query = generate_smart_query(base_topic)  # ✅ Pass base_topic now
 
-        time.sleep(random.uniform(2, 5))  # random wait between searches
+            search_box = browser.find_element(By.NAME, "q")
+            search_box.clear()
+            search_box.send_keys(query)
+            search_box.send_keys(Keys.RETURN)
+
+            print(f"🔎 Searching: {query} ({i+1}/{search_count})")
+
+            time.sleep(random.uniform(3, 6))  # Human-like random sleep
+
+            browser.get('https://www.bing.com/')
+            time.sleep(random.uniform(2, 4))
+
+    except Exception as e:
+        print(f"⚠️ Error during searching: {e}")

@@ -1,85 +1,72 @@
-import os
+# main.py
+
 import time
-import random
-import schedule
-from datetime import datetime
 from scripts.browser_manager import create_browser
 from scripts.login_manager import login
+from scripts.promotions import complete_daily_set, complete_punch_cards, complete_promotions
 from scripts.searcher import perform_searches
-from scripts.promotions import complete_promotions
+from scripts.points_logger import log_points
 from scripts.notifier import send_discord_notification
-from scripts.utils import load_json, load_search_topics, get_random_greeting
-from scripts.points_logger import log_points  # 🆕 Added for Points Logging
+import json
 
-# Paths
-SETTINGS_PATH = os.path.join("config", "settings.json")
-ACCOUNTS_PATH = os.path.join("config", "accounts.json")
-TOPICS_PATH = os.path.join("config", "search_topics.txt")
-
-# Load config
-settings = load_json(SETTINGS_PATH)
-accounts = load_json(ACCOUNTS_PATH)
-topics = load_search_topics(TOPICS_PATH)
-
-REGION = settings.get("region", "en-US")
-SMART_MODE = settings.get("smart_mode", True)
-WEBHOOK_URL = settings.get("discord_webhook_url", None)
-DAILY_RUN_TIME = settings.get("daily_run_time", "08:00")
-
-# Fake point tracking for now (will be dynamic later)
-POINTS_PER_ACCOUNT = 500  # 🛠️ Temporary placeholder until real points scraping is added
-
-def farm_account(account):
-    email = account["email"]
-    password = account["password"]
-
-    print(f"➡️ Starting farming for: {email}")
-    print(get_random_greeting())
-
-    # Desktop farming
+def farm_account(account, selected_task):
     browser = create_browser(mobile=False)
-    if login(browser, email, password):
-        complete_promotions(browser)
-        perform_searches(browser, topics, num_searches=30, smart_mode=SMART_MODE)
+
+    if login(browser, account['email'], account['password']):
+        print(f"🚀 Logged in successfully: {account['email']}")
+
+        if selected_task == "1":
+            complete_daily_set(browser)
+        elif selected_task == "2":
+            complete_punch_cards(browser)
+        elif selected_task == "3":
+            complete_promotions(browser)
+        elif selected_task == "4":
+            perform_searches(browser, mobile=False)
+            perform_searches(browser, mobile=True)
+        elif selected_task == "5":
+            log_points(browser)
+        elif selected_task == "6":
+            # Full farming
+            complete_daily_set(browser)
+            complete_punch_cards(browser)
+            complete_promotions(browser)
+            perform_searches(browser, mobile=False)
+            perform_searches(browser, mobile=True)
+            log_points(browser)
+
+        # ✅ Send Discord Notification after task
+        send_discord_notification(account['email'], f"Task {selected_task} completed successfully ✅")
+    
+    else:
+        print(f"❌ Login failed for {account['email']}")
+
     browser.quit()
-    time.sleep(random.uniform(5, 10))
 
-    # Mobile farming
-    browser = create_browser(mobile=True)
-    if login(browser, email, password):
-        perform_searches(browser, topics, num_searches=20, smart_mode=SMART_MODE)
-    browser.quit()
+def farm_all_accounts(selected_task):
+    with open("config/accounts.json", "r") as f:
+        accounts = json.load(f)
 
-    print(f"✅ Finished farming for: {email}")
-
-def farm_all_accounts():
-    print(f"\n📅 Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"🛠️ Farming {len(accounts)} account(s)...\n")
+    print(f"📅 Starting farming for {len(accounts)} account(s)...")
 
     for account in accounts:
-        farm_account(account)
+        print(f"➡️ Starting farming for: {account['email']}")
+        farm_account(account, selected_task)
 
-    # 🆕 Log today's points (simplified for now)
-    total_points = len(accounts) * POINTS_PER_ACCOUNT
-    log_points(total_points)
-
-    # Discord notification
-    if WEBHOOK_URL:
-        send_discord_notification(WEBHOOK_URL, f"✅ Farming complete! Total points today: {total_points}")
-
-    print("\n👋 All farming done for today!\n")
+def show_menu():
+    print("\n🧠 Please choose what you want to do:")
+    print("1️⃣ Complete Daily Set only")
+    print("2️⃣ Complete Punch Cards only")
+    print("3️⃣ Complete Promotions only")
+    print("4️⃣ Perform Desktop + Mobile Searches only")
+    print("5️⃣ Log Points only")
+    print("6️⃣ Farm Everything (FULL)")
+    choice = input("\n👉 Enter your choice (1-6): ").strip()
+    return choice
 
 def main():
-    import sys
-    if len(sys.argv) > 1 and sys.argv[1].lower() == "now":
-        farm_all_accounts()
-    else:
-        print(f"⏰ Scheduled farming at {DAILY_RUN_TIME} daily.")
-        schedule.every().day.at(DAILY_RUN_TIME).do(farm_all_accounts)
-
-        while True:
-            schedule.run_pending()
-            time.sleep(60)
+    selected_task = show_menu()
+    farm_all_accounts(selected_task)
 
 if __name__ == "__main__":
     main()

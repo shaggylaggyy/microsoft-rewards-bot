@@ -1,69 +1,138 @@
+# promotions.py
+
 import time
 import random
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
-def complete_promotions(browser):
+def complete_daily_set(browser):
     try:
-        browser.get("https://rewards.microsoft.com/")
-        wait = WebDriverWait(browser, 10)
-        time.sleep(3)
+        print("🛠️ Completing Daily Set...")
+        browser.get('https://rewards.bing.com/')
+        time.sleep(random.uniform(5, 7))  # Let page fully load
 
-        print("🎉 Promotions page opened.")
+        # Find the daily-sets section
+        try:
+            daily_sets_section = browser.find_element(By.ID, "daily-sets")
+        except Exception:
+            print("⚠️ Daily Sets section not found!")
+            return
 
-        # Find all promotion cards
-        cards = browser.find_elements(By.CSS_SELECTOR, "a.mee-card.mee-card-clickable")
+        # Find the first mee-card-group inside daily-sets (today's activities)
+        try:
+            today_set_group = daily_sets_section.find_element(By.CSS_SELECTOR, "mee-card-group")
+        except Exception:
+            print("⚠️ Today's set group not found!")
+            return
 
-        for idx, card in enumerate(cards):
+        # Inside that group, find the mee-cards
+        daily_set_cards = today_set_group.find_elements(By.CSS_SELECTOR, "mee-card")
+
+        if not daily_set_cards:
+            print("⚠️ No Daily Set activities found!")
+            return
+
+        print(f"🔎 Found {len(daily_set_cards)} daily set activities!")
+
+        for index in range(len(daily_set_cards)):
             try:
-                print(f"🎯 Clicking promotion {idx + 1}...")
-                card.click()
-                time.sleep(random.uniform(3, 5))
+                print(f"➡️ Clicking activity {index+1}")
 
-                # Handle quizzes (if quiz detected)
-                if "quiz" in browser.current_url or "trivia" in browser.current_url:
-                    complete_quiz(browser)
-                
-                # Handle polls
-                elif "poll" in browser.current_url:
-                    complete_poll(browser)
+                # Re-find everything fresh each loop
+                browser.get('https://rewards.bing.com/')
+                time.sleep(random.uniform(5, 7))
 
-                else:
-                    # Just stay for a few seconds if it's a simple promotion
-                    time.sleep(3)
+                daily_sets_section = browser.find_element(By.ID, "daily-sets")
+                today_set_group = daily_sets_section.find_element(By.CSS_SELECTOR, "mee-card-group")
+                daily_set_cards = today_set_group.find_elements(By.CSS_SELECTOR, "mee-card")
 
-                browser.back()
-                time.sleep(3)
+                card = daily_set_cards[index]
+
+                browser.execute_script("arguments[0].scrollIntoView(true);", card)
+                time.sleep(1)
+
+                clickable = card.find_element(By.TAG_NAME, "a")
+                clickable.click()
+
+                time.sleep(random.uniform(6, 8))  # Let task page load
+
+                solve_opened_task(browser)
 
             except Exception as e:
-                print(f"⚠️ Failed to complete promotion {idx + 1}: {e}")
-                browser.back()
+                print(f"⚠️ Error during activity {index+1}: {e}")
                 continue
 
     except Exception as e:
-        print(f"❌ Failed to open promotions page: {e}")
+        print(f"⚠️ Error completing daily set: {e}")
 
-def complete_quiz(browser):
+def solve_opened_task(browser):
     try:
-        wait = WebDriverWait(browser, 10)
-        # Answer a few questions randomly
-        for _ in range(3):
-            options = browser.find_elements(By.CSS_SELECTOR, "button")
-            if options:
-                random.choice(options).click()
-                time.sleep(random.uniform(2, 4))
-            else:
-                break
-    except Exception as e:
-        print(f"⚠️ Quiz error: {e}")
+        time.sleep(5)  # Let page load
 
-def complete_poll(browser):
-    try:
-        wait = WebDriverWait(browser, 10)
-        options = browser.find_elements(By.CSS_SELECTOR, "button")
+        # Check for quiz buttons
+        options = browser.find_elements(By.CSS_SELECTOR, "div[class*='rq_option']")
         if options:
+            print("🧠 Solving quiz...")
             random.choice(options).click()
-            time.sleep(2)
+            time.sleep(random.uniform(4, 6))
+            return
+
+        # Check for poll options
+        vote_buttons = browser.find_elements(By.CSS_SELECTOR, "div[class*='bt_option']")
+        if vote_buttons:
+            print("🧠 Voting poll...")
+            random.choice(vote_buttons).click()
+            time.sleep(random.uniform(4, 6))
+            return
+
+        # If just article
+        print("📰 Reading article...")
+        time.sleep(random.uniform(10, 15))
+
     except Exception as e:
-        print(f"⚠️ Poll error: {e}")
+        print(f"⚠️ Error solving task: {e}")
+
+def complete_punch_cards(browser):
+    try:
+        print("🎯 Completing Punch Cards...")
+        browser.get('https://rewards.bing.com/')
+        time.sleep(random.uniform(5, 7))
+
+        punch_cards = browser.find_elements(By.CSS_SELECTOR, "a[class*='task-link']")
+        print(f"🔎 Found {len(punch_cards)} punch card tasks!")
+
+        for index, card in enumerate(punch_cards):
+            try:
+                card.click()
+                print(f"➡️ Clicking punch card {index+1}")
+                time.sleep(random.uniform(6, 8))
+                browser.back()
+                time.sleep(random.uniform(5, 7))
+            except Exception as e:
+                print(f"⚠️ Error during punch card {index+1}: {e}")
+                continue
+
+    except Exception as e:
+        print(f"⚠️ Error completing punch cards: {e}")
+
+def complete_promotions(browser):
+    try:
+        print("🎯 Completing Other Promotions...")
+        browser.get('https://rewards.bing.com/')
+        time.sleep(random.uniform(5, 7))
+
+        promos = browser.find_elements(By.CSS_SELECTOR, "a[class*='task-link']")
+        print(f"🔎 Found {len(promos)} promotions!")
+
+        for index, promo in enumerate(promos):
+            try:
+                promo.click()
+                print(f"➡️ Clicking promo {index+1}")
+                time.sleep(random.uniform(6, 8))
+                browser.back()
+                time.sleep(random.uniform(5, 7))
+            except Exception as e:
+                print(f"⚠️ Error during promo {index+1}: {e}")
+                continue
+
+    except Exception as e:
+        print(f"⚠️ Error completing promotions: {e}")

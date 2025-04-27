@@ -1,11 +1,5 @@
 # 🏆 Microsoft Rewards Automation Bot
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen)
-![Stars](https://img.shields.io/github/stars/shaggylaggyy/microsoft-rewards-bot?style=social)
-![Forks](https://img.shields.io/github/forks/shaggylaggyy/microsoft-rewards-bot?style=social)
-
 Fully automatic, headless Microsoft Rewards bot that:
 
 - 🔎 Performs smart AI-generated Bing searches (desktop + mobile)
