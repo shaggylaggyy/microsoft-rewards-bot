@@ -130,6 +130,7 @@ microsoft_rewards_bot/
 ---
 
 📄 Notes
+
 ✅ Works with multiple accounts.
 
 ✅ Fully headless — no browser windows visible during farming.
