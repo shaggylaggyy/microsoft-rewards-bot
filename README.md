@@ -40,42 +40,69 @@
 | Auto-start with Windows Scheduler | ✅ |
 | GUI Control Panel App (Tkinter) | ✅ |
 
+
 ---
 
-## 🚀 How to Run
+# 📦 Installation
 
-### 1. Manual Mode (Immediate Farming)
+> Ensure you have **Python 3.11+** installed before starting.
 
+1. Clone the repository:
 ```bash
-python main.py now
-✅ Starts farming instantly (desktop and mobile searches, promotions, daily sets).
-
-2. Auto Daily Farming (Scheduled)
-Auto-start at PC boot using Windows Task Scheduler.
-
-Launches farming daily at configured time (example: 8:00 AM).
-
-🛠 Installation
-Clone this repo or copy the project locally.
-
-Install dependencies:
-
-bash
-Copy
-Edit
+git clone https://github.com/shaggylaggyy/microsoft-rewards-bot.git
+```
+2. Install the dependencies:
+```bash
 pip install -r requirements.txt
-Configure:
+```
+3. Configure your Microsoft accounts inside:
+```bash
+config/accounts.json
+```
+4. Run the bot:
+```bash
+python main.py
+```
 
-config/accounts.json → Add your Microsoft accounts.
+---
 
-config/settings.json → Customize region, Discord webhook, smart mode, farming time.
+# 🛡️ Security Notice
 
-Run and start farming!
+> This project is intended for **educational purposes only**.
+> Use responsibly and within the Microsoft Rewards guidelines.
+> Review Microsoft's Terms of Service before using automation tools.
+> The author is **not responsible** for any misuse or consequences.
+
+---
+
+# 🏷️ Version
+
+- **v1.0** — Initial full bot release:
+  - Interactive Task Selection 🏫
+  - Daily Set Automation ✅
+  - Punch Cards Completion ✅
+  - Promotions Collection ✅
+  - Desktop + Mobile Searches ✅
+  - Discord Webhook Notifications ✅
+  - Clean Headless Mode Operation ✅
+
+---
+
+# 🚀 Roadmap
+
+- [x] Interactive Task Control Panel
+- [x] Clean Silent Farming (Headless Mode)
+- [x] Professional Discord Notifications
+- [ ] 🔜 Captcha Auto-Solver Integration
+- [ ] 🔜 Smart Quiz Auto-Answering
+- [ ] 🔜 Random Human-Like Movements (Stealth Farming)
+- [ ] 🔜 Auto Daily Scheduled Farming (Task Scheduler integration)
+- [ ] 🔜 Web Dashboard Control Panel (Streamlit/Tkinter)
+
+---
 
 📚 Directory Structure
-bash
-Copy
-Edit
+
 microsoft_rewards_bot/
 │
 ├── config/
@@ -97,6 +124,8 @@ microsoft_rewards_bot/
 ├── graph_points.py     # 📈 Points graph generator
 ├── main.py             # 🧠 Bot launcher
 └── points_log.csv      # 📊 Points history file
+---
+
 📄 Notes
 ✅ Works with multiple accounts.
 
@@ -108,15 +137,10 @@ microsoft_rewards_bot/
 
 ✅ Sends success notifications to Discord automatically.
 
-🎯 Future Work (Optional)
-CAPTCHA auto-solving (coming later if needed)
+---
 
-Advanced quiz correct-answer prediction
+# ❤️ Credits
 
-Telegram phone notifications
+Made with ❤️ by [**shaggylaggyy**](https://github.com/shaggylaggyy)
 
-If you wanna help me out use my refferal link to sign up:
-https://rewards.bing.com/welcome?rh=F8AC64A6&ref=rafsae
-
-🧠 Credits
-Developed by shaggylaggyy 🧠🚀
+> Contributions are welcome! Feel free to open pull requests or suggestions 💛
