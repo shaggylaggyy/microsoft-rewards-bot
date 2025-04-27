@@ -101,15 +101,13 @@ python main.py
 
 ---
 
-📚 Directory Structure
+# 📁 Directory Structure
 
 microsoft_rewards_bot/
-│
 ├── config/
 │   ├── accounts.json
 │   ├── settings.json
 │   └── search_topics.txt
-│
 ├── scripts/
 │   ├── browser_manager.py
 │   ├── login_manager.py
@@ -119,11 +117,14 @@ microsoft_rewards_bot/
 │   ├── utils.py
 │   ├── points_logger.py
 │   └── query_generator.py
-│
-├── control_panel.py    # 🎛️ GUI app
-├── graph_points.py     # 📈 Points graph generator
-├── main.py             # 🧠 Bot launcher
-└── points_log.csv      # 📊 Points history file
+├── control_panel.py      # 🧩 GUI app
+├── graph_points.py       # 📊 Points graph generator
+├── main.py               # 🧠 Bot launcher
+├── points_log.csv        # 📚 Points history file
+├── README.md             # 📝 Project documentation
+├── LICENSE               # 📜 MIT license
+└── requirements.txt      # 📦 Python dependencies
+
 ---
 
 📄 Notes
