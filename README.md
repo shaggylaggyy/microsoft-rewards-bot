@@ -1,5 +1,3 @@
-# 🏆 Microsoft Rewards Automation Bot
-
 <p align="center">
   <img src="https://img.shields.io/github/license/shaggylaggyy/microsoft-rewards-bot?color=brightgreen&style=for-the-badge" alt="License">
   <img src="https://img.shields.io/github/stars/shaggylaggyy/microsoft-rewards-bot?color=yellow&style=for-the-badge" alt="Stars">
@@ -11,8 +9,10 @@
   <img src="https://img.shields.io/badge/Edge-Automation-blue?style=for-the-badge&logo=microsoftedge" alt="Microsoft Edge">
 </p>
 
+<h1 align="center">🏆 Microsoft Rewards Automation Bot</h1>
 
-Fully automatic, headless Microsoft Rewards bot that:
+
+## A powerful bot to fully automate Microsoft Rewards farming with Daily Set, Promotions, Searches and Discord notifications! 🚀
 
 - 🔎 Performs smart AI-generated Bing searches (desktop + mobile)
 - 🎯 Completes Daily Set, Punch Cards, and basic Promotions
