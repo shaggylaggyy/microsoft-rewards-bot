@@ -101,8 +101,9 @@ python main.py
 
 ---
 
-# 📁 Directory Structure
+## 📁 Directory Structure
 
+```
 microsoft_rewards_bot/
 ├── config/
 │   ├── accounts.json
@@ -124,6 +125,7 @@ microsoft_rewards_bot/
 ├── README.md             # 📝 Project documentation
 ├── LICENSE               # 📜 MIT license
 └── requirements.txt      # 📦 Python dependencies
+```
 
 ---
 
