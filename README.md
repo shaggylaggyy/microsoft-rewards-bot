@@ -63,7 +63,16 @@ config/accounts.json
 ```bash
 python main.py
 ```
-
+## 📬 Set up Discord Webhook (Optional but Recommended)
+```bash
+1. Go to your **Discord server settings** ➔ **Integrations** ➔ **Webhooks** ➔ **New Webhook**.
+2. Copy the **Webhook URL**.
+3. Open the `config/settings.json` file and paste your webhook like this:
+```json
+{
+  "discord_webhook": "https://discord.com/api/webhooks/your_webhook_here"
+}
+```
 ---
 
 # 🛡️ Security Notice
