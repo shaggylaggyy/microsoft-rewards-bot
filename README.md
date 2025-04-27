@@ -11,6 +11,16 @@
 
 <h1 align="center">🏆 Microsoft Rewards Automation Bot</h1>
 
+---
+
+# 🛡️ Security Notice
+
+> This project is intended for **educational purposes only**.
+> Use responsibly and within the Microsoft Rewards guidelines.
+> Review Microsoft's Terms of Service before using automation tools.
+> The author is **not responsible** for any misuse or consequences.
+
+---
 
 ## A powerful bot to fully automate Microsoft Rewards farming with Daily Set, Promotions, Searches and Discord notifications! 🚀
 
@@ -73,20 +83,12 @@ python main.py
   "discord_webhook": "https://discord.com/api/webhooks/your_webhook_here"
 }
 ```
----
-
-# 🛡️ Security Notice
-
-> This project is intended for **educational purposes only**.
-> Use responsibly and within the Microsoft Rewards guidelines.
-> Review Microsoft's Terms of Service before using automation tools.
-> The author is **not responsible** for any misuse or consequences.
 
 ---
 
 # 🏷️ Version
 
-- **v1.0** — Initial full bot release:
+- **v2.1** — Initial full bot release:
   - Interactive Task Selection 🏫
   - Daily Set Automation ✅
   - Punch Cards Completion ✅
