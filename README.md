@@ -109,5 +109,8 @@ Advanced quiz correct-answer prediction
 
 Telegram phone notifications
 
+If you wanna help me out use my refferal link to sign up:
+https://rewards.bing.com/welcome?rh=F8AC64A6&ref=rafsae
+
 🧠 Credits
 Developed by shaggylaggyy 🧠🚀
