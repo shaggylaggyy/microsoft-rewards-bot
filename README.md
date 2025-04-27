@@ -9,9 +9,7 @@
   <img src="https://img.shields.io/badge/Edge-Automation-blue?style=for-the-badge&logo=microsoftedge" alt="Microsoft Edge">
 </p>
 
-<h1 align="center">🏆 Microsoft Rewards Automation Bot</h1>
 
----
 
 # 🛡️ Security Notice
 
@@ -19,6 +17,8 @@
 > Use responsibly and within the Microsoft Rewards guidelines.
 > Review Microsoft's Terms of Service before using automation tools.
 > The author is **not responsible** for any misuse or consequences.
+
+<h1 align="center">🏆 Microsoft Rewards Automation Bot</h1>
 
 ---
 
