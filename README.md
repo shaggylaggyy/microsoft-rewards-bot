@@ -20,7 +20,7 @@
 
 <h1 align="center">🏆 Microsoft Rewards Automation Bot</h1>
 
----
+
 
 ## A powerful bot to fully automate Microsoft Rewards farming with Daily Set, Promotions, Searches and Discord notifications! 🚀
 
