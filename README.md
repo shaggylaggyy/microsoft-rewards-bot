@@ -1,5 +1,17 @@
 # 🏆 Microsoft Rewards Automation Bot
 
+<p align="center">
+  <img src="https://img.shields.io/github/license/shaggylaggyy/microsoft-rewards-bot?color=brightgreen&style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/github/stars/shaggylaggyy/microsoft-rewards-bot?color=yellow&style=for-the-badge" alt="Stars">
+  <img src="https://img.shields.io/github/forks/shaggylaggyy/microsoft-rewards-bot?color=blue&style=for-the-badge" alt="Forks">
+  <img src="https://img.shields.io/github/issues/shaggylaggyy/microsoft-rewards-bot?color=red&style=for-the-badge" alt="Issues">
+  <img src="https://img.shields.io/github/last-commit/shaggylaggyy/microsoft-rewards-bot?color=purple&style=for-the-badge" alt="Last Commit">
+  <img src="https://img.shields.io/badge/Python-3.11%2B-blue?style=for-the-badge&logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Made%20With-Selenium-brightgreen?style=for-the-badge&logo=selenium" alt="Selenium">
+  <img src="https://img.shields.io/badge/Edge-Automation-blue?style=for-the-badge&logo=microsoftedge" alt="Microsoft Edge">
+</p>
+
+
 Fully automatic, headless Microsoft Rewards bot that:
 
 - 🔎 Performs smart AI-generated Bing searches (desktop + mobile)
